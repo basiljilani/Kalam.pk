@@ -2,34 +2,120 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Community">
-  <main class="pt-24 min-h-screen">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-amiri font-bold text-kalam-dark mb-8">Community</h1>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Discussion Forums</h2>
-          <div class="space-y-4">
-            <div class="p-4 border rounded hover:border-kalam-green cursor-pointer">
-              <h3 class="font-bold">Islamic Studies</h3>
-              <p class="text-gray-600">Discuss various aspects of Islamic studies</p>
+<Layout title="Community - Connect & Grow Together">
+  <main class="min-h-screen bg-gradient-to-b from-emerald-50 to-slate-50">
+    <!-- Hero Section -->
+    <div class="relative pt-24 pb-16 overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center max-w-3xl mx-auto space-y-6">
+          <h1 class="text-4xl md:text-5xl font-bold text-slate-800">
+            <span class="font-amiri block text-6xl mb-4">مجتمع</span>
+            Join Our Vibrant Community
+          </h1>
+          <p class="text-xl text-slate-600 leading-relaxed">
+            Connect with fellow believers, share knowledge, and grow together in faith through our inclusive digital community.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 md:px-6 pb-24">
+      <!-- Featured Sections -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Discussion Forums -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10">
+            <div class="bg-emerald-100 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+              </svg>
             </div>
-            <div class="p-4 border rounded hover:border-kalam-green cursor-pointer">
-              <h3 class="font-bold">Q&A Section</h3>
-              <p class="text-gray-600">Ask questions and get answers from scholars</p>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Discussion Forums</h2>
+            <div class="space-y-4">
+              <a href="#" class="block p-4 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300">
+                <h3 class="font-bold text-lg text-slate-700">Islamic Studies</h3>
+                <p class="text-slate-600 mt-1">Engage in meaningful discussions about Islamic teachings and practices</p>
+              </a>
+              <a href="#" class="block p-4 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300">
+                <h3 class="font-bold text-lg text-slate-700">Q&A with Scholars</h3>
+                <p class="text-slate-600 mt-1">Get authentic answers from qualified scholars</p>
+              </a>
             </div>
           </div>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Events</h2>
-          <div class="space-y-4">
-            <div class="p-4 border rounded">
-              <h3 class="font-bold">Online Lectures</h3>
-              <p class="text-gray-600">Weekly Islamic lectures by renowned scholars</p>
-              <button class="mt-2 text-kalam-green hover:text-kalam-dark">Learn More →</button>
+
+        <!-- Events -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10">
+            <div class="bg-emerald-100 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Upcoming Events</h2>
+            <div class="space-y-4">
+              <div class="p-4 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300">
+                <span class="text-sm font-semibold text-emerald-600">This Weekend</span>
+                <h3 class="font-bold text-lg text-slate-700 mt-1">Digital Dhikr Circle</h3>
+                <p class="text-slate-600 mt-1">Join our weekly online remembrance gathering</p>
+                <button class="mt-3 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors">Register →</button>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-300">
+                <span class="text-sm font-semibold text-emerald-600">Next Week</span>
+                <h3 class="font-bold text-lg text-slate-700 mt-1">Youth Mentorship</h3>
+                <p class="text-slate-600 mt-1">Connect with mentors for spiritual guidance</p>
+                <button class="mt-3 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors">Learn More →</button>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Community Stories -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 relative overflow-hidden group md:col-span-2 lg:col-span-1">
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative z-10">
+            <div class="bg-emerald-100 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-4">Community Stories</h2>
+            <div class="space-y-6">
+              <div class="relative">
+                <blockquote class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-100">
+                  <p class="text-slate-600 italic">"This platform has transformed my understanding of Islam. The community here is incredibly supportive and knowledgeable."</p>
+                  <footer class="mt-2">
+                    <div class="font-semibold text-slate-700">Sarah M.</div>
+                    <div class="text-sm text-emerald-600">Community Member</div>
+                  </footer>
+                </blockquote>
+              </div>
+              <div class="relative">
+                <blockquote class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-100">
+                  <p class="text-slate-600 italic">"The digital dhikr circles have become an essential part of my weekly spiritual routine. It's amazing how connected you can feel even through a screen."</p>
+                  <footer class="mt-2">
+                    <div class="font-semibold text-slate-700">Ahmed R.</div>
+                    <div class="text-sm text-emerald-600">Regular Participant</div>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Join Community Section -->
+      <div class="mt-16 text-center">
+        <a href="#" class="inline-flex items-center px-6 py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+          </svg>
+          Join Our Community
+        </a>
       </div>
     </div>
   </main>

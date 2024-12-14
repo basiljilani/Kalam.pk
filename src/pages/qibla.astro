@@ -2,28 +2,223 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Qibla Direction">
-  <main class="pt-24 min-h-screen">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-amiri font-bold text-kalam-dark mb-8">Qibla Direction</h1>
-      <div class="max-w-2xl mx-auto">
-        <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-          <div class="mb-6">
-            <div class="w-64 h-64 mx-auto border-4 border-kalam-green rounded-full relative">
-              <!-- Placeholder for compass -->
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-6xl">🧭</span>
+<Layout title="Qibla Direction - Find Your Way to Prayer">
+  <main class="min-h-screen bg-gradient-to-b from-emerald-50 to-slate-50">
+    <!-- Hero Section -->
+    <div class="relative pt-24 pb-16 overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center max-w-3xl mx-auto space-y-6">
+          <h1 class="text-4xl md:text-5xl font-bold text-slate-800">
+            <span class="font-amiri block text-6xl mb-4">قِبلَة</span>
+            Find Your Qibla Direction
+          </h1>
+          <p class="text-xl text-slate-600 leading-relaxed">
+            Locate the direction to the Holy Kaaba in Makkah with precision and ease
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 md:px-6 pb-24">
+      <div class="max-w-4xl mx-auto space-y-12">
+        <!-- Compass Card -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 md:p-12 relative overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+          <!-- Decorative Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="relative z-10">
+            <!-- Compass Container -->
+            <div class="mb-12 transform hover:scale-105 transition-transform duration-500">
+              <div id="compass-container" class="w-72 h-72 mx-auto relative">
+                <!-- Outer Ring -->
+                <div class="absolute inset-0 border-4 border-slate-200 rounded-full"></div>
+                
+                <!-- Inner Ring -->
+                <div class="absolute inset-2 border-2 border-slate-100 rounded-full"></div>
+                
+                <!-- Compass Rose Background -->
+                <div class="absolute inset-4 bg-white rounded-full shadow-inner"></div>
+                
+                <!-- Compass -->
+                <div id="compass" class="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-out">
+                  <div class="w-1 h-full absolute">
+                    <!-- North Pointer -->
+                    <div class="w-1.5 h-12 bg-gradient-to-b from-emerald-500 to-emerald-600 rounded-full absolute -top-1 left-1/2 transform -translate-x-1/2"></div>
+                    <!-- South Pointer -->
+                    <div class="w-1.5 h-12 bg-gradient-to-t from-slate-300 to-slate-400 rounded-full absolute -bottom-1 left-1/2 transform -translate-x-1/2"></div>
+                  </div>
+                </div>
+                
+                <!-- Qibla Indicator -->
+                <div id="qibla-indicator" class="absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-500 ease-out">
+                  <div class="w-56 h-1 bg-gradient-to-r from-emerald-500 to-emerald-600 transform origin-center rotate-0 rounded-full shadow-lg"></div>
+                </div>
+
+                <!-- Cardinal Points -->
+                <div class="absolute inset-0">
+                  <span class="absolute top-2 left-1/2 transform -translate-x-1/2 text-sm font-semibold text-slate-700">N</span>
+                  <span class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-sm font-semibold text-slate-700">S</span>
+                  <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-sm font-semibold text-slate-700">W</span>
+                  <span class="absolute right-2 top-1/2 transform -translate-y-1/2 text-sm font-semibold text-slate-700">E</span>
+                </div>
               </div>
             </div>
+
+            <!-- Status and Info -->
+            <div class="space-y-6 text-center">
+              <div id="location-status" class="text-slate-700 text-lg font-medium bg-slate-50 py-3 px-6 rounded-xl inline-block">
+                Waiting for location...
+              </div>
+
+              <div id="qibla-info" class="hidden">
+                <div class="bg-emerald-50 text-emerald-800 py-4 px-8 rounded-xl inline-block">
+                  <span class="text-xl font-semibold">Qibla is </span>
+                  <span id="qibla-degree" class="text-2xl font-bold text-emerald-600"></span>
+                  <span class="text-xl font-semibold">° from North</span>
+                </div>
+              </div>
+
+              <button id="calibrate-btn" 
+                class="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-8 py-3 rounded-xl
+                font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 
+                transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                Calibrate Compass
+              </button>
+            </div>
           </div>
-          <p class="text-gray-700 mb-4">
-            Use your device's compass to find the Qibla direction.
-          </p>
-          <button class="bg-kalam-green text-white px-6 py-2 rounded-full hover:bg-kalam-dark transition duration-300">
-            Calibrate Compass
-          </button>
         </div>
       </div>
     </div>
   </main>
 </Layout>
+
+<script>
+  let qiblaDirection = 0;
+  let compassHeading = 0;
+
+  // Function to get user's location
+  function getLocation() {
+    const locationStatus = document.getElementById('location-status');
+    
+    if (!navigator.geolocation) {
+      locationStatus.textContent = 'Geolocation is not supported by your browser';
+      return;
+    }
+
+    locationStatus.textContent = 'Locating...';
+    
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const { latitude, longitude } = position.coords;
+        fetchQiblaDirection(latitude, longitude);
+      },
+      error => {
+        locationStatus.textContent = 'Unable to retrieve your location';
+        console.error('Geolocation error:', error);
+      }
+    );
+  }
+
+  // Function to fetch Qibla direction from API
+  async function fetchQiblaDirection(latitude, longitude) {
+    try {
+      const response = await fetch(`https://api.aladhan.com/v1/qibla/${latitude}/${longitude}`);
+      const data = await response.json();
+      
+      if (data.code === 200 && data.data) {
+        qiblaDirection = data.data.direction;
+        document.getElementById('qibla-info').classList.remove('hidden');
+        document.getElementById('qibla-degree').textContent = qiblaDirection.toFixed(2);
+        document.getElementById('location-status').textContent = 'Location found';
+        updateQiblaIndicator();
+      }
+    } catch (error) {
+      document.getElementById('location-status').textContent = 'Error fetching Qibla direction';
+      console.error('API error:', error);
+    }
+  }
+
+  // Function to handle device orientation
+  function handleOrientation(event) {
+    if (event.webkitCompassHeading) {
+      // For iOS devices
+      compassHeading = event.webkitCompassHeading;
+    } else if (event.alpha) {
+      // For Android devices
+      compassHeading = 360 - event.alpha;
+    }
+
+    updateCompass();
+    updateQiblaIndicator();
+  }
+
+  // Function to update compass rotation
+  function updateCompass() {
+    const compass = document.getElementById('compass');
+    if (compass) {
+      compass.style.transform = `rotate(${compassHeading}deg)`;
+    }
+  }
+
+  // Function to update Qibla indicator
+  function updateQiblaIndicator() {
+    const qiblaIndicator = document.getElementById('qibla-indicator');
+    if (qiblaIndicator) {
+      const rotation = qiblaDirection - compassHeading;
+      qiblaIndicator.style.transform = `rotate(${rotation}deg)`;
+    }
+  }
+
+  // Function to request device orientation permission
+  async function requestOrientationPermission() {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      try {
+        const permission = await DeviceOrientationEvent.requestPermission();
+        if (permission === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation, true);
+        } else {
+          document.getElementById('location-status').textContent = 'Permission to access compass was denied';
+        }
+      } catch (error) {
+        console.error('Permission error:', error);
+      }
+    } else {
+      window.addEventListener('deviceorientation', handleOrientation, true);
+    }
+  }
+
+  // Add event listeners when the page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    getLocation();
+    
+    document.getElementById('calibrate-btn').addEventListener('click', () => {
+      requestOrientationPermission();
+    });
+  });
+</script>
+
+<style>
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  .compass-active {
+    animation: pulse 2s infinite;
+  }
+
+  /* Smooth transitions for compass movement */
+  #compass, #qibla-indicator {
+    will-change: transform;
+  }
+
+  /* Gradient animation for the compass */
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>

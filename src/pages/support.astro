@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = "Support Us";
+---
+
+<Layout title={title}>
+  <div class="min-h-screen bg-gradient-to-b from-white to-gray-50 pt-24">
+    <div class="container mx-auto px-4 md:px-6 py-8 max-w-4xl">
+      <div class="space-y-8">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-lexend font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">
+            Support Us
+          </h1>
+          <p class="text-gray-600 font-lexend text-lg max-w-2xl mx-auto">
+            Help us continue our mission of providing quality educational resources.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 transform hover:-translate-y-1">
+            <div class="bg-green-100 rounded-xl p-4 mb-4 inline-block">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-lexend font-bold text-gray-800 mb-2">Share</h3>
+            <p class="text-gray-600 font-lexend">
+              Help spread the word about our platform to friends and family.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 transform hover:-translate-y-1">
+            <div class="bg-green-100 rounded-xl p-4 mb-4 inline-block">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-lexend font-bold text-gray-800 mb-2">Contribute</h3>
+            <p class="text-gray-600 font-lexend">
+              Share your knowledge by contributing educational content.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-6 transform hover:-translate-y-1">
+            <div class="bg-green-100 rounded-xl p-4 mb-4 inline-block">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-lexend font-bold text-gray-800 mb-2">Donate</h3>
+            <p class="text-gray-600 font-lexend">
+              Support our mission with a financial contribution.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-8 text-center mt-8">
+          <h2 class="text-2xl font-lexend font-bold text-gray-800 mb-4">Have Questions?</h2>
+          <p class="text-gray-600 font-lexend mb-6">
+            Reach out to our support team at
+          </p>
+          <a href="mailto:support@kalam.pk" class="inline-flex items-center text-green-600 hover:text-green-700 font-lexend font-medium transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            support@kalam.pk
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .bg-gradient-to-b {
+    background-size: 100% 100%;
+    background-position: 0 0;
+  }
+</style>

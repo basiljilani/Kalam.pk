@@ -1,30 +1,265 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getPrayerTimes } from '../utils/prayerTimes';
-
-const prayerTimes = getPrayerTimes('Karachi');
 ---
 
 <Layout title="Prayer Times">
-  <main class="pt-24 min-h-screen">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-amiri font-bold text-kalam-dark mb-8">Prayer Times</h1>
-      <div class="max-w-3xl mx-auto">
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div class="p-6 bg-kalam-green text-white">
-            <h2 class="text-2xl font-amiri">Today's Prayer Times</h2>
-            <p class="text-kalam-light">Karachi, Pakistan</p>
-          </div>
-          <div class="divide-y">
-            {prayerTimes.map(prayer => (
-              <div class="flex justify-between p-4 hover:bg-kalam-light transition duration-300">
-                <span class="font-amiri text-lg">{prayer.name}</span>
-                <span class="font-bold">{prayer.time}</span>
+  <main class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 pt-28 pb-20">
+    <div class="container mx-auto px-4 md:px-6">
+      <!-- Hero Section -->
+      <div class="text-center mb-16">
+        <h1 class="text-5xl font-amiri font-bold text-slate-800 mb-6">
+          Prayer Times
+        </h1>
+        <p class="text-slate-600 text-xl max-w-3xl mx-auto leading-relaxed">
+          Stay connected with your daily prayers
+        </p>
+      </div>
+
+      <!-- Location and Date Card -->
+      <div class="max-w-4xl mx-auto mb-12">
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-slate-200">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
               </div>
-            ))}
+              <div>
+                <h2 class="text-2xl font-bold text-slate-800" id="location">Loading location...</h2>
+                <p class="text-slate-500">Your current location</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mr-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-2xl font-bold text-slate-800" id="current-date">Loading date...</h2>
+                <p class="text-slate-500">Today's date</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prayer Times Grid -->
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Fajr -->
+          <div class="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-slate-200">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800">Fajr</h3>
+            </div>
+            <p class="text-3xl font-bold text-emerald-600" id="fajr-time">--:--</p>
+          </div>
+
+          <!-- Sunrise -->
+          <div class="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-slate-200">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800">Sunrise</h3>
+            </div>
+            <p class="text-3xl font-bold text-amber-600" id="sunrise-time">--:--</p>
+          </div>
+
+          <!-- Dhuhr -->
+          <div class="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-slate-200">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-sky-100 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800">Dhuhr</h3>
+            </div>
+            <p class="text-3xl font-bold text-sky-600" id="dhuhr-time">--:--</p>
+          </div>
+
+          <!-- Asr -->
+          <div class="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-slate-200">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800">Asr</h3>
+            </div>
+            <p class="text-3xl font-bold text-orange-600" id="asr-time">--:--</p>
+          </div>
+
+          <!-- Maghrib -->
+          <div class="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-slate-200">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800">Maghrib</h3>
+            </div>
+            <p class="text-3xl font-bold text-indigo-600" id="maghrib-time">--:--</p>
+          </div>
+
+          <!-- Isha -->
+          <div class="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-slate-200">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800">Isha</h3>
+            </div>
+            <p class="text-3xl font-bold text-purple-600" id="isha-time">--:--</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Card -->
+      <div class="max-w-4xl mx-auto mt-12">
+        <div class="bg-white rounded-xl p-6 shadow-lg border border-slate-200">
+          <div class="flex items-center mb-6">
+            <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center mr-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">Prayer Time Settings</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="calculation-method" class="block text-sm font-medium text-slate-600 mb-2">
+                Calculation Method
+              </label>
+              <select id="calculation-method" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                <option value="1">Muslim World League</option>
+                <option value="2">Islamic Society of North America</option>
+                <option value="3">Egyptian General Authority of Survey</option>
+                <option value="4">Umm Al-Qura University, Makkah</option>
+                <option value="5">University of Islamic Sciences, Karachi</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="asr-method" class="block text-sm font-medium text-slate-600 mb-2">
+                Asr Calculation Method
+              </label>
+              <select id="asr-method" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                <option value="0">Standard (Shafi'i, Maliki, Hanbali)</option>
+                <option value="1">Hanafi</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 </Layout>
+
+<script>
+  // Function to get current location
+  function getCurrentLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          
+          // Get location name using reverse geocoding
+          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+            .then(response => response.json())
+            .then(data => {
+              const locationElement = document.getElementById('location');
+              if (locationElement) {
+                locationElement.textContent = data.address.city || data.address.town || data.address.village || 'Unknown Location';
+              }
+            })
+            .catch(error => {
+              console.error('Error getting location name:', error);
+            });
+
+          // Get prayer times using coordinates
+          getPrayerTimes(latitude, longitude);
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+          document.getElementById('location').textContent = 'Location access denied';
+        }
+      );
+    } else {
+      document.getElementById('location').textContent = 'Geolocation not supported';
+    }
+  }
+
+  // Function to get prayer times
+  async function getPrayerTimes(latitude, longitude) {
+    try {
+      const date = new Date();
+      const response = await fetch(`https://api.aladhan.com/v1/timings/${date.getTime()/1000}?latitude=${latitude}&longitude=${longitude}&method=${document.getElementById('calculation-method').value}`);
+      const data = await response.json();
+      
+      if (data.data && data.data.timings) {
+        const timings = data.data.timings;
+        document.getElementById('fajr-time').textContent = timings.Fajr;
+        document.getElementById('sunrise-time').textContent = timings.Sunrise;
+        document.getElementById('dhuhr-time').textContent = timings.Dhuhr;
+        document.getElementById('asr-time').textContent = timings.Asr;
+        document.getElementById('maghrib-time').textContent = timings.Maghrib;
+        document.getElementById('isha-time').textContent = timings.Isha;
+      }
+    } catch (error) {
+      console.error('Error getting prayer times:', error);
+    }
+  }
+
+  // Function to update current date
+  function updateCurrentDate() {
+    const dateElement = document.getElementById('current-date');
+    if (dateElement) {
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const date = new Date();
+      dateElement.textContent = date.toLocaleDateString('en-US', options);
+    }
+  }
+
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    getCurrentLocation();
+    updateCurrentDate();
+
+    // Add event listeners for settings changes
+    document.getElementById('calculation-method').addEventListener('change', () => {
+      const position = navigator.geolocation.getCurrentPosition(position => {
+        getPrayerTimes(position.coords.latitude, position.coords.longitude);
+      });
+    });
+
+    document.getElementById('asr-method').addEventListener('change', () => {
+      const position = navigator.geolocation.getCurrentPosition(position => {
+        getPrayerTimes(position.coords.latitude, position.coords.longitude);
+      });
+    });
+  });
+</script>
+
+<style>
+  .font-amiri {
+    font-family: 'Amiri', serif;
+  }
+</style>

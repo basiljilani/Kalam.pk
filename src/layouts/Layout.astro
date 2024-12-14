@@ -17,7 +17,22 @@ const { title } = Astro.props;
     <meta name="description" content="Kalam.pk - Your Digital Platform for Islamic Knowledge" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <title>{title} | Kalam.pk</title>
+    <style>
+      body {
+        background-color: #F5F5F5;
+        color: #333;
+        font-family: 'Nunito Sans', sans-serif;
+      }
+      .nav-link {
+        @apply text-gray-800 hover:text-yellow-600 transition duration-300;
+      }
+      footer {
+        background: #003366;
+        color: #FFD700;
+      }
+    </style>
   </head>
   <body class="font-poppins">
     <Navigation />

@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/amiri": "^5.0.8",
+    "@fontsource/lexend": "^5.1.1",
     "@fontsource/poppins": "^5.0.8",
     "aos": "^2.3.4",
     "astro": "^4.15.3",

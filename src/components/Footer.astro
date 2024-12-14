@@ -1,29 +1,79 @@
 ---
 const currentYear = new Date().getFullYear();
+
+const quickLinks = [
+  { href: '/quran', label: 'Quran' },
+  { href: '/prayer-times', label: 'Prayer Times' },
+  { href: '/qibla', label: 'Qibla Direction' },
+  { href: '/community', label: 'Community' },
+  { href: '/about', label: 'About Us' }
+];
+
+const resources = [
+  { href: '/support', label: 'Support Us' },
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms of Service' }
+];
 ---
 
-<footer class="bg-kalam-dark text-white py-8">
-  <div class="container mx-auto px-6">
-    <div class="grid md:grid-cols-3 gap-8">
-      <div>
-        <h3 class="text-xl font-bold font-amiri mb-4">Kalam.pk</h3>
-        <p class="text-sm">Spreading Islamic Knowledge Digitally</p>
+<footer class="bg-black text-white">
+  <!-- Main Footer -->
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-8 gap-12 py-16">
+      <!-- Brand Section -->
+      <div class="md:col-span-4 space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-2xl font-bold font-lexend bg-gradient-to-r from-white via-gray-200 to-gray-300 bg-clip-text text-transparent">
+            Kalam<span class="text-white">.pk</span>
+          </span>
+        </div>
+        <p class="text-gray-400 font-lexend text-sm leading-relaxed max-w-md">
+          Empowering the Muslim community with accessible Islamic knowledge and resources in the digital age.
+        </p>
       </div>
-      <div>
-        <h4 class="text-lg mb-4">Quick Links</h4>
-        <ul class="space-y-2">
-          <li><a href="/quran" class="hover:text-kalam-light">Quran</a></li>
-          <li><a href="/prayer-times" class="hover:text-kalam-light">Prayer Times</a></li>
-          <li><a href="/qibla" class="hover:text-kalam-light">Qibla Direction</a></li>
+
+      <!-- Resources -->
+      <div class="md:col-span-2">
+        <h3 class="text-lg font-lexend font-bold mb-4">Resources</h3>
+        <ul class="space-y-3">
+          {resources.map(link => (
+            <li>
+              <a 
+                href={link.href}
+                class="text-sm font-lexend text-gray-400 hover:text-green-400 transition-colors duration-300"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
-      <div>
-        <h4 class="text-lg mb-4">Contact Us</h4>
-        <p class="text-sm">Email: info@kalam.pk</p>
+
+      <!-- Contact -->
+      <div class="md:col-span-2">
+        <h3 class="text-lg font-lexend font-bold mb-4">Contact</h3>
+        <ul class="space-y-3">
+          <li>
+            <a 
+              href="mailto:info@kalam.pk"
+              class="text-sm font-lexend text-gray-400 hover:text-green-400 transition-colors duration-300"
+            >
+              info@kalam.pk
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="text-center mt-8 pt-8 border-t border-gray-700">
-      <p>&copy; {currentYear} Kalam.pk. All rights reserved.</p>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="border-t border-white/10">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="py-6 flex justify-center items-center">
+        <p class="text-gray-400 text-sm font-lexend">
+          &copy; {currentYear} Kalam.pk. All rights reserved.
+        </p>
+      </div>
     </div>
   </div>
 </footer>

@@ -11,22 +11,118 @@ const navLinks = [
 ];
 ---
 
-<nav class="bg-white shadow-md fixed w-full z-50">
-  <div class="container mx-auto px-6 py-4">
-    <div class="flex items-center justify-between">
-      <a href="/" class="text-2xl font-amiri text-kalam-green font-bold">Kalam.pk</a>
-      <div class="hidden md:flex items-center space-x-8">
+<nav class="fixed w-full z-50">
+  <!-- Backdrop blur effect -->
+  <div class="absolute inset-0 bg-white/80 backdrop-blur-md"></div>
+  
+  <!-- Main navigation content -->
+  <div class="relative">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="/" class="relative group">
+          <span class="text-3xl md:text-4xl tracking-tight font-bold bg-gradient-to-r from-emerald-700 via-emerald-600 to-emerald-500 bg-clip-text text-transparent transition-all duration-300 font-lexend">
+            Kalam<span class="text-slate-700">.pk</span>
+          </span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-600 to-emerald-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-1">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class="relative px-4 py-2 text-slate-600 hover:text-emerald-600 transition-colors duration-300 rounded-lg group"
+            >
+              <span class="relative z-10">{link.label}</span>
+              <span class="absolute inset-0 bg-emerald-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </a>
+          ))}
+          
+          <!-- Timezone Dropdown -->
+          <div class="relative ml-4">
+            <TimeZoneDropdown 
+              class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-2.5 text-slate-700 hover:border-emerald-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" 
+            />
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button 
+          class="md:hidden p-2 rounded-lg hover:bg-emerald-50 transition-colors duration-300"
+          aria-label="Toggle menu"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6 text-slate-600" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="md:hidden hidden">
+      <div class="px-4 py-3 space-y-1">
         {navLinks.map(link => (
-          <a href={link.href} class="nav-link">{link.label}</a>
+          <a
+            href={link.href}
+            class="block px-4 py-2 text-slate-600 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors duration-300"
+          >
+            {link.label}
+          </a>
         ))}
-        <TimeZoneDropdown />
+        <div class="px-4 py-2">
+          <TimeZoneDropdown 
+            class="w-full bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl shadow-lg p-2.5 text-slate-700 hover:border-emerald-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" 
+          />
+        </div>
       </div>
     </div>
   </div>
 </nav>
 
 <style>
-  .nav-link {
-    @apply text-gray-700 hover:text-kalam-green transition duration-300;
+  /* Optional: Add a subtle shadow when scrolling */
+  nav {
+    @apply transition-shadow duration-300;
+  }
+  
+  nav.scrolled {
+    @apply shadow-lg;
+  }
+
+  /* Ensure dropdown stays above other elements */
+  .relative {
+    z-index: 50;
   }
 </style>
+
+<script>
+  // Add shadow on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+  const mobileMenu = document.querySelector('.md\\:hidden.hidden');
+
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+</script>

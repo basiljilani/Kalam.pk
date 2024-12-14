@@ -2,30 +2,229 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Quran">
-  <main class="pt-24 min-h-screen">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl font-amiri font-bold text-kalam-dark mb-8">Interactive Quran</h1>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Read Quran</h2>
-          <!-- Add Quran reader component here -->
-          <div class="bg-kalam-light p-4 rounded">
-            <p class="text-center text-2xl font-amiri">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-          </div>
+<Layout title="Holy Quran - Digital Recitation & Translation">
+    <main class="min-h-screen bg-gradient-to-b from-emerald-50 to-slate-50">
+        <!-- Hero Section -->
+        <div class="relative pt-24 pb-16 overflow-hidden">
+            <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center max-w-3xl mx-auto space-y-6">
+                    <h1 class="text-4xl md:text-5xl font-bold text-slate-800">
+                        <span class="font-amiri block text-6xl mb-4">قرآن</span>
+                        Holy Quran
+                    </h1>
+                    <p class="text-xl text-slate-600 leading-relaxed">
+                        Explore the divine words with beautiful recitations and authentic translations
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Translations & Tafsir</h2>
-          <!-- Add translations component here -->
-          <div class="space-y-4">
-            <select class="w-full p-2 border rounded">
-              <option>Select Translation</option>
-              <option>English - Sahih International</option>
-              <option>Urdu - Mufti Taqi Usmani</option>
-            </select>
-          </div>
+
+        <!-- Main Content -->
+        <div class="container mx-auto px-4 md:px-6 pb-24">
+            <!-- Selection Controls -->
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="space-y-2">
+                            <label class="block text-slate-700 font-semibold">Select Surah</label>
+                            <select id="surahSelect" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-slate-50 text-slate-700">
+                                <option value="">Choose a Surah</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-slate-700 font-semibold">Recitation</label>
+                            <select id="recitationSelect" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-slate-50 text-slate-700">
+                                <option value="ar.alafasy">Mishary Rashid Alafasy</option>
+                                <option value="ar.husary">Mahmoud Khalil Al-Husary</option>
+                                <option value="ar.sudais">Abdul Rahman Al-Sudais</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-slate-700 font-semibold">Translation</label>
+                            <select id="translationSelect" class="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 bg-slate-50 text-slate-700">
+                                <option value="en.sahih">English (Sahih International)</option>
+                                <option value="ur.jalandhry">Urdu (Jalandhry)</option>
+                                <option value="ur.maududi">Urdu (Maududi)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surah Title -->
+                <div class="text-center mb-8">
+                    <h2 id="surahTitle" class="text-3xl md:text-4xl font-bold text-slate-800 font-amiri"></h2>
+                </div>
+
+                <!-- Audio Player -->
+                <div class="bg-white rounded-xl shadow-lg p-6 max-w-3xl mx-auto mb-12">
+                    <audio id="audioPlayer" controls class="w-full">
+                        <source src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <!-- Quran Content -->
+                <div id="quranContent" class="space-y-6">
+                    <!-- Verses will be dynamically inserted here -->
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </Layout>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700&display=swap');
+    
+    .arabic-text {
+        font-family: 'Noto Sans Arabic', sans-serif;
+        direction: rtl;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #22c55e;
+        border-radius: 6px;
+        border: 3px solid #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #16a34a;
+    }
+
+    /* Audio Player Styling */
+    audio::-webkit-media-controls-panel {
+        background-color: #f8fafc;
+    }
+
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-mute-button {
+        background-color: #22c55e;
+        border-radius: 50%;
+    }
+
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+        color: #0f172a;
+    }
+</style>
+
+<script>
+    // Function to fetch Surahs
+    async function fetchSurahs() {
+        try {
+            const response = await fetch('https://api.alquran.cloud/v1/surah');
+            const data = await response.json();
+            const surahSelect = document.getElementById('surahSelect');
+            
+            data.data.forEach(surah => {
+                const option = document.createElement('option');
+                option.value = surah.number;
+                option.textContent = `${surah.number}. ${surah.name} (${surah.englishName})`;
+                surahSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching surahs:', error);
+        }
+    }
+
+    // Function to fetch Quran content
+    async function fetchQuranContent(surahNumber, recitation, translation) {
+        try {
+            // Fetch all data in parallel
+            const [arabicResponse, translationResponse, audioResponse] = await Promise.all([
+                fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`),
+                fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}/${translation}`),
+                fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}/${recitation}`)
+            ]);
+
+            const arabicData = await arabicResponse.json();
+            const translationData = await translationResponse.json();
+            const audioData = await audioResponse.json();
+
+            // Update audio player
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioData.data.ayahs[0].audio;
+            audioPlayer.load();
+
+            // Update Surah title
+            document.getElementById('surahTitle').textContent = `${arabicData.data.name} (${arabicData.data.englishName})`;
+
+            // Clear existing content
+            const quranContent = document.getElementById('quranContent');
+            quranContent.innerHTML = '';
+
+            // Combine and display verses
+            arabicData.data.ayahs.forEach((verse, index) => {
+                const translation = translationData.data.ayahs[index];
+                const verseElement = document.createElement('div');
+                verseElement.className = 'bg-white rounded-lg p-6 shadow-sm';
+                verseElement.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="arabic-text text-2xl text-right flex-1">
+                            ${verse.text}
+                        </div>
+                        <span class="text-green-600 text-sm">[Ayah ${verse.numberInSurah}]</span>
+                    </div>
+                    <div class="text-gray-600 text-right">
+                        ${translation.text}
+                    </div>
+                `;
+                quranContent.appendChild(verseElement);
+            });
+
+            // Add error handling for audio
+            audioPlayer.onerror = function() {
+                console.error('Audio error:', audioPlayer.error);
+            };
+
+            // Scroll to top after loading new content
+            window.scrollTo(0, 0);
+        } catch (error) {
+            console.error('Error fetching Quran content:', error);
+            quranContent.innerHTML = '<div class="text-center text-red-600">Unable to load Quran content. Please try again later.</div>';
+        }
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', () => {
+        const surahSelect = document.getElementById('surahSelect');
+        const recitationSelect = document.getElementById('recitationSelect');
+        const translationSelect = document.getElementById('translationSelect');
+
+        if (surahSelect) {
+            surahSelect.addEventListener('change', function(e) {
+                if (e.target.value) {
+                    const surah = e.target.value;
+                    const recitation = recitationSelect.value;
+                    const translation = translationSelect.value;
+                    fetchQuranContent(surah, recitation, translation);
+                }
+            });
+
+            recitationSelect.addEventListener('change', function() {
+                if (surahSelect.value) {
+                    fetchQuranContent(surahSelect.value, recitationSelect.value, translationSelect.value);
+                }
+            });
+
+            translationSelect.addEventListener('change', function() {
+                if (surahSelect.value) {
+                    fetchQuranContent(surahSelect.value, recitationSelect.value, translationSelect.value);
+                }
+            });
+            
+            // Initialize
+            fetchSurahs();
+        }
+    });
+</script>
