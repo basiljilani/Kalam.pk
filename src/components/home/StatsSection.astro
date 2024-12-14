@@ -1,0 +1,23 @@
+---
+const stats = [
+  { number: '1M+', label: 'Active Users' },
+  { number: '50K+', label: 'Daily Prayers Tracked' },
+  { number: '100+', label: 'Islamic Scholars' },
+  { number: '24/7', label: 'Community Support' }
+];
+---
+
+<section class="py-20 bg-kalam-dark text-white">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {stats.map(stat => (
+        <div class="text-center">
+          <div class="text-4xl md:text-5xl font-bold font-amiri text-kalam-light mb-2">
+            {stat.number}
+          </div>
+          <div class="text-sm md:text-base text-gray-300">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

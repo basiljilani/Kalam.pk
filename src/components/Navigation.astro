@@ -1,0 +1,32 @@
+---
+import TimeZoneDropdown from './ui/TimeZoneDropdown.astro';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/quran', label: 'Quran' },
+  { href: '/qibla', label: 'Qibla Direction' },
+  { href: '/prayer-times', label: 'Prayer Times' },
+  { href: '/community', label: 'Community' },
+  { href: '/about', label: 'About Us' }
+];
+---
+
+<nav class="bg-white shadow-md fixed w-full z-50">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <a href="/" class="text-2xl font-amiri text-kalam-green font-bold">Kalam.pk</a>
+      <div class="hidden md:flex items-center space-x-8">
+        {navLinks.map(link => (
+          <a href={link.href} class="nav-link">{link.label}</a>
+        ))}
+        <TimeZoneDropdown />
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav-link {
+    @apply text-gray-700 hover:text-kalam-green transition duration-300;
+  }
+</style>

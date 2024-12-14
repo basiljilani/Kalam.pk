@@ -1,0 +1,27 @@
+---
+import Card from '../ui/Card.astro';
+
+const services = [
+  { title: 'Dynamic Prayer Times', icon: '🕌', description: 'Accurate prayer times for your location' },
+  { title: 'Qibla Direction Compass', icon: '🧭', description: 'Find Qibla direction easily' },
+  { title: 'Interactive Quran Viewer', icon: '📖', description: 'Read and study the Quran' },
+  { title: 'Islamic Calendar', icon: '📅', description: 'Important Islamic dates and events' },
+  { title: 'Educational Resources', icon: '📚', description: 'Learn about Islam' },
+  { title: 'Community Features', icon: '👥', description: 'Connect with other Muslims' }
+];
+---
+
+<section id="services" class="py-20">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-amiri font-bold text-center text-kalam-dark mb-12">Our Services</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      {services.map(service => (
+        <Card>
+          <div class="text-4xl mb-4">{service.icon}</div>
+          <h3 class="text-xl font-bold text-kalam-dark mb-2">{service.title}</h3>
+          <p class="text-gray-600">{service.description}</p>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

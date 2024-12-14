@@ -1,0 +1,29 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-kalam-dark text-white py-8">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold font-amiri mb-4">Kalam.pk</h3>
+        <p class="text-sm">Spreading Islamic Knowledge Digitally</p>
+      </div>
+      <div>
+        <h4 class="text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="/quran" class="hover:text-kalam-light">Quran</a></li>
+          <li><a href="/prayer-times" class="hover:text-kalam-light">Prayer Times</a></li>
+          <li><a href="/qibla" class="hover:text-kalam-light">Qibla Direction</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg mb-4">Contact Us</h4>
+        <p class="text-sm">Email: info@kalam.pk</p>
+      </div>
+    </div>
+    <div class="text-center mt-8 pt-8 border-t border-gray-700">
+      <p>&copy; {currentYear} Kalam.pk. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

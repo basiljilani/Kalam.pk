@@ -1,0 +1,12 @@
+/* Import fonts */
+@import '@fontsource/amiri';
+@import '@fontsource/poppins';
+
+/* Font utility classes */
+.font-amiri {
+  font-family: 'Amiri', serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}

@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPrayerTimes } from '../utils/prayerTimes';
+
+const prayerTimes = getPrayerTimes('Karachi');
+---
+
+<Layout title="Prayer Times">
+  <main class="pt-24 min-h-screen">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-amiri font-bold text-kalam-dark mb-8">Prayer Times</h1>
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="p-6 bg-kalam-green text-white">
+            <h2 class="text-2xl font-amiri">Today's Prayer Times</h2>
+            <p class="text-kalam-light">Karachi, Pakistan</p>
+          </div>
+          <div class="divide-y">
+            {prayerTimes.map(prayer => (
+              <div class="flex justify-between p-4 hover:bg-kalam-light transition duration-300">
+                <span class="font-amiri text-lg">{prayer.name}</span>
+                <span class="font-bold">{prayer.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

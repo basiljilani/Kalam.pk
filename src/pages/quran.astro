@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Quran">
+  <main class="pt-24 min-h-screen">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-amiri font-bold text-kalam-dark mb-8">Interactive Quran</h1>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Read Quran</h2>
+          <!-- Add Quran reader component here -->
+          <div class="bg-kalam-light p-4 rounded">
+            <p class="text-center text-2xl font-amiri">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Translations & Tafsir</h2>
+          <!-- Add translations component here -->
+          <div class="space-y-4">
+            <select class="w-full p-2 border rounded">
+              <option>Select Translation</option>
+              <option>English - Sahih International</option>
+              <option>Urdu - Mufti Taqi Usmani</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

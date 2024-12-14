@@ -1,0 +1,39 @@
+---
+const features = [
+  {
+    icon: '🕌',
+    title: 'Prayer Times',
+    description: 'Accurate prayer times based on your location'
+  },
+  {
+    icon: '📖',
+    title: 'Digital Quran',
+    description: 'Read and listen to the Holy Quran with translations'
+  },
+  {
+    icon: '🧭',
+    title: 'Qibla Finder',
+    description: 'Easy-to-use Qibla direction compass'
+  }
+];
+---
+
+<section class="py-20">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-amiri font-bold text-kalam-dark mb-4">Core Features</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">Experience the convenience of modern Islamic tools designed to enhance your spiritual journey.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      {features.map(feature => (
+        <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
+          <div class="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+            {feature.icon}
+          </div>
+          <h3 class="text-2xl font-amiri font-bold text-kalam-dark mb-4">{feature.title}</h3>
+          <p class="text-gray-600">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

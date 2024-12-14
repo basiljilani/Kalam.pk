@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Community">
+  <main class="pt-24 min-h-screen">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-amiri font-bold text-kalam-dark mb-8">Community</h1>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Discussion Forums</h2>
+          <div class="space-y-4">
+            <div class="p-4 border rounded hover:border-kalam-green cursor-pointer">
+              <h3 class="font-bold">Islamic Studies</h3>
+              <p class="text-gray-600">Discuss various aspects of Islamic studies</p>
+            </div>
+            <div class="p-4 border rounded hover:border-kalam-green cursor-pointer">
+              <h3 class="font-bold">Q&A Section</h3>
+              <p class="text-gray-600">Ask questions and get answers from scholars</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-amiri text-kalam-dark mb-4">Events</h2>
+          <div class="space-y-4">
+            <div class="p-4 border rounded">
+              <h3 class="font-bold">Online Lectures</h3>
+              <p class="text-gray-600">Weekly Islamic lectures by renowned scholars</p>
+              <button class="mt-2 text-kalam-green hover:text-kalam-dark">Learn More →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
