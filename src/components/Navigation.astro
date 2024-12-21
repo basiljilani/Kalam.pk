@@ -6,6 +6,7 @@ const navLinks = [
   { href: '/quran', label: 'Quran' },
   { href: '/qibla', label: 'Qibla Direction' },
   { href: '/prayer-times', label: 'Prayer Times' },
+  { href: '/partners', label: 'Our Partners' },
   { href: '/community', label: 'Community' },
   { href: '/about', label: 'About Us' }
 ];
@@ -38,13 +39,6 @@ const navLinks = [
               <span class="absolute inset-0 bg-emerald-50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </a>
           ))}
-          
-          <!-- Timezone Dropdown -->
-          <div class="relative ml-4">
-            <TimeZoneDropdown 
-              class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-2.5 text-slate-700 hover:border-emerald-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" 
-            />
-          </div>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -81,11 +75,6 @@ const navLinks = [
             {link.label}
           </a>
         ))}
-        <div class="px-4 py-2">
-          <TimeZoneDropdown 
-            class="w-full bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl shadow-lg p-2.5 text-slate-700 hover:border-emerald-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500" 
-          />
-        </div>
       </div>
     </div>
   </div>

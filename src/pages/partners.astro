@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const partners = [
+  {
+    name: 'Islamic Foundation',
+    description: 'Leading organization dedicated to Islamic education and research',
+    website: 'https://example.com',
+    color: 'from-emerald-500 to-teal-400'
+  },
+  {
+    name: 'Digital Ummah',
+    description: 'Technology solutions for the Muslim community worldwide',
+    website: 'https://example.com',
+    color: 'from-emerald-400 to-green-400'
+  },
+  {
+    name: 'Muslim Aid',
+    description: 'International relief and development agency',
+    website: 'https://example.com',
+    color: 'from-teal-400 to-emerald-500'
+  },
+  {
+    name: 'Islamic Arts Institute',
+    description: 'Preserving and promoting Islamic art and culture',
+    website: 'https://example.com',
+    color: 'from-green-400 to-emerald-400'
+  },
+  {
+    name: 'Halal Ventures',
+    description: 'Supporting ethical and Shariah-compliant businesses',
+    website: 'https://example.com',
+    color: 'from-emerald-500 to-green-400'
+  },
+  {
+    name: 'Tech Mosque',
+    description: 'Bridging technology and Islamic practices',
+    website: 'https://example.com',
+    color: 'from-teal-400 to-emerald-400'
+  }
+];
+---
+
+<Layout title="Our Partners | Kalam.pk">
+  <main class="pt-24 pb-16">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-b from-emerald-50/50 to-white">
+      <div class="container mx-auto px-4 py-16 text-center">
+        <h1 
+          class="text-4xl md:text-5xl font-bold text-slate-800 mb-6 font-lexend bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          Our Partners
+        </h1>
+        <p 
+          class="text-lg text-slate-600 max-w-2xl mx-auto"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="100"
+        >
+          Collaborating with leading organizations to serve the Muslim community better and create meaningful impact together.
+        </p>
+      </div>
+    </div>
+
+    <!-- Partners Grid -->
+    <div class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {partners.map((partner, index) => (
+          <div 
+            class="group relative overflow-hidden bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 hover:border-emerald-200"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay={index * 100}
+          >
+            {/* Gradient Background */}
+            <div class={`absolute inset-0 bg-gradient-to-br ${partner.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+            
+            {/* Content */}
+            <div class="relative p-8">
+              {/* Icon placeholder - using first letter of partner name */}
+              <div class={`w-12 h-12 rounded-xl mb-6 flex items-center justify-center bg-gradient-to-br ${partner.color} text-white font-bold text-xl`}>
+                {partner.name[0]}
+              </div>
+              
+              <h3 class="text-xl font-semibold text-slate-800 mb-3 font-lexend group-hover:text-emerald-600 transition-colors duration-300">
+                {partner.name}
+              </h3>
+              <p class="text-slate-600 mb-6 line-clamp-2">
+                {partner.description}
+              </p>
+              <a
+                href={partner.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-emerald-600 hover:text-emerald-700 transition-colors duration-300 group-hover:translate-x-1 transform transition-transform"
+              >
+                Visit Website
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  class="h-4 w-4 ml-1" 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                >
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Partnership CTA -->
+    <div class="container mx-auto px-4 py-16">
+      <div 
+        class="relative overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-50/50 rounded-3xl p-8 md:p-12 text-center"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <div class="relative z-10">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 font-lexend bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            Become a Partner
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+            Join us in our mission to serve the Muslim community. Let's collaborate to create meaningful impact together.
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 font-semibold transform hover:scale-105"
+          >
+            Get in Touch
+          </a>
+        </div>
+        
+        {/* Decorative elements */}
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-emerald-400/10 to-teal-400/10 rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-br from-emerald-400/10 to-teal-400/10 rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
+      </div>
+    </div>
+  </main>
+</Layout>
